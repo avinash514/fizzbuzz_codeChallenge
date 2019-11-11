@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "fizzbuzz" {
   container_definitions = <<DEFINITION
 [
   {
-    "name": "wordpress",
+    "name": "fizzbuzz-container",
     "image": "avinash514/fizzbuzz:latest",
     "essential": true,
     "portMappings": [
