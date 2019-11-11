@@ -1,18 +1,15 @@
-data "aws_ecs_task_definition" "wordpress" {
-  task_definition = "${aws_ecs_task_definition.wordpress.family}"
+data "aws_ecs_task_definition" "fizzbuzz" {
+  task_definition = "${aws_ecs_task_definition.fizzbuzz.family}"
 }
 
-resource "aws_ecs_task_definition" "wordpress" {
-  family = "hello_world"
+resource "aws_ecs_task_definition" "fizzbuzz" {
+  family = "fizzbuzz_codeChallenge"
 
   container_definitions = <<DEFINITION
 [
   {
     "name": "wordpress",
-    "links": [
-      "mysql"
-    ],
-    "image": "wordpress",
+    "image": "avinash514/fizzbuzz:latest",
     "essential": true,
     "portMappings": [
       {
@@ -22,19 +19,6 @@ resource "aws_ecs_task_definition" "wordpress" {
     ],
     "memory": 500,
     "cpu": 10
-  },
-  {
-    "environment": [
-      {
-        "name": "MYSQL_ROOT_PASSWORD",
-        "value": "password"
-      }
-    ],
-    "name": "mysql",
-    "image": "mysql",
-    "cpu": 10,
-    "memory": 500,
-    "essential": true
   }
 ]
 DEFINITION
